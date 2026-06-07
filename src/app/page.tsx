@@ -1,5 +1,12 @@
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  redirect('/login');
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/login');
+  }, [router]);
+  return <div className="min-h-screen bg-gray-950 flex items-center justify-center text-white">Loading...</div>;
 }
