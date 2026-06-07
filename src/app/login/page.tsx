@@ -23,36 +23,12 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
 
-    const deviceId = localStorage.getItem('deviceId');
+    await new Promise((res) => setTimeout(res, 500));
 
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mobileNumber, password, deviceId }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        if (res.status === 403) {
-          setError({ title: 'Device Limit Reached', message: data.message });
-        } else {
-          setError({ title: 'Login Failed', message: data.error || 'Invalid credentials' });
-        }
-        return;
-      }
-
-      // Success
-      if (data.user.role === 'ADMIN') {
-        router.push('/admin');
-      } else {
-        router.push('/dashboard');
-      }
-    } catch (err) {
-      setError({ title: 'Error', message: 'Something went wrong. Please try again.' });
-    } finally {
-      setLoading(false);
+    if (mobileNumber === 'admin') {
+      router.push('/admin');
+    } else {
+      router.push('/dashboard');
     }
   };
 

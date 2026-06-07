@@ -1,19 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { updateProfile } from './profile/actions';
 
 export default function OnboardingModal() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
-    const res = await updateProfile(formData);
-    if (res?.error) {
-      setError(res.error);
-      setLoading(false);
-    }
+    await new Promise(res => setTimeout(res, 500));
+    window.location.reload();
   };
 
   return (
@@ -24,7 +21,7 @@ export default function OnboardingModal() {
         
         {error && <div className="mb-4 p-3 bg-red-900/30 text-red-400 text-sm rounded border border-red-900/50">{error}</div>}
 
-        <form action={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="text-sm font-medium text-gray-300">Your Full Name</label>
             <input 

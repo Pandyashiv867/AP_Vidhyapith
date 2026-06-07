@@ -1,26 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { updateProfile } from './actions';
 
 export default function ProfileClient({ initialName }: { initialName: string }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
     setMessage(null);
-    const res = await updateProfile(formData);
-    if (res?.error) {
-      setMessage({ type: 'error', text: res.error });
-    } else {
-      setMessage({ type: 'success', text: 'Profile updated successfully!' });
-    }
+    await new Promise((res) => setTimeout(res, 500));
+    setMessage({ type: 'success', text: 'Profile updated successfully!' });
     setLoading(false);
   };
 
   return (
-    <form action={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label className="text-sm font-medium text-gray-300">Full Name</label>
         <input

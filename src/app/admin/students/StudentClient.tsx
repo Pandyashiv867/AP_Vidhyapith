@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { createStudent, unlockDevice, deleteStudent } from './actions';
 
 type Student = {
   id: string;
@@ -15,27 +14,23 @@ export default function StudentClient({ initialStudents }: { initialStudents: St
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
-  const handleCreate = async (formData: FormData) => {
+  const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
     setError(null);
-    const res = await createStudent(formData);
-    if (res?.error) {
-      setError(res.error);
-    }
+    await new Promise(res => setTimeout(res, 500));
     setLoading(false);
-    // Form will reset naturally if we don't preventDefault, but we did. 
-    // Wait, with server actions in form `action={handleCreate}`, it handles it automatically.
   };
 
   const handleUnlock = async (id: string) => {
     if (confirm('Are you sure you want to unlock this user? This will log them out of their current device.')) {
-      await unlockDevice(id);
+      await new Promise(res => setTimeout(res, 500));
     }
   };
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this student entirely?')) {
-      await deleteStudent(id);
+      await new Promise(res => setTimeout(res, 500));
     }
   };
 
@@ -53,7 +48,7 @@ export default function StudentClient({ initialStudents }: { initialStudents: St
             </div>
           )}
 
-          <form action={handleCreate} className="space-y-4">
+          <form onSubmit={handleCreate} className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-300">Mobile Number</label>
               <input

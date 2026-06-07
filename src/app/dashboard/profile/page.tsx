@@ -1,15 +1,7 @@
-import { prisma } from '@/lib/prisma';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import ProfileClient from './ProfileClient';
 
-export default async function ProfilePage() {
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get('session_token')?.value;
-  if (!sessionToken) redirect('/login');
-
-  const user = await prisma.user.findFirst({ where: { sessionToken } });
-  if (!user) redirect('/login');
+export default function ProfilePage() {
+  const user = { mobileNumber: "1234567890", name: "Guest User" };
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">

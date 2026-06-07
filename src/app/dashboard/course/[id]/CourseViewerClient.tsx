@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { toggleProgress } from './actions';
 
 type Material = {
   id: string;
@@ -32,9 +31,9 @@ export default function CourseViewerClient({ materials: initialMaterials }: { ma
     setMaterials(prev => prev.map(m => m.id === activeMaterial.id ? { ...m, completed: newStatus } : m));
     setActiveMaterial({ ...activeMaterial, completed: newStatus });
 
-    // Server update
+    // Mock server update
     startTransition(async () => {
-      await toggleProgress(activeMaterial.id, newStatus);
+      await new Promise(res => setTimeout(res, 500));
     });
   };
 

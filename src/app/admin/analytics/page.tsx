@@ -1,22 +1,6 @@
-import { prisma } from '@/lib/prisma';
-
 export default async function AnalyticsPage() {
-  const students = await prisma.user.findMany({
-    where: { role: 'STUDENT' },
-    orderBy: { createdAt: 'desc' },
-    include: {
-      progress: {
-        where: { completed: true },
-        include: {
-          material: {
-            include: { course: true }
-          }
-        }
-      }
-    }
-  });
-
-  const totalMaterials = await prisma.material.count();
+  const students: any[] = [];
+  const totalMaterials = 0;
 
   return (
     <div className="space-y-6">

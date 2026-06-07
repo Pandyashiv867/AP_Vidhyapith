@@ -1,16 +1,8 @@
 import Link from 'next/link';
-import { prisma } from '@/lib/prisma';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import OnboardingModal from './OnboardingModal';
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get('session_token')?.value;
-  if (!sessionToken) redirect('/login');
-
-  const user = await prisma.user.findFirst({ where: { sessionToken } });
-  if (!user) redirect('/login');
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const user = { name: "Guest User" };
 
   return (
     <div className="min-h-screen bg-transparent text-white flex flex-col relative z-0">

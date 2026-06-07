@@ -1,15 +1,7 @@
-import { prisma } from '@/lib/prisma';
 import CourseClient from './CourseClient';
 
 export default async function CoursesPage() {
-  const courses = await prisma.course.findMany({
-    orderBy: { createdAt: 'desc' },
-    include: {
-      materials: {
-        orderBy: { createdAt: 'asc' }
-      }
-    }
-  });
+  const courses: any[] = [];
 
   return (
     <div className="space-y-6">

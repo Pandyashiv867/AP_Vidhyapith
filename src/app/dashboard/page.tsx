@@ -1,31 +1,7 @@
-import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
 
-export default async function StudentDashboard() {
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get('session_token')?.value;
-  const user = sessionToken ? await prisma.user.findFirst({ where: { sessionToken } }) : null;
-
-  const courses = await prisma.course.findMany({
-    orderBy: { createdAt: 'desc' },
-    include: {
-      materials: {
-        select: {
-          id: true,
-          progress: user ? { where: { userId: user.id } } : false
-        }
-      }
-    }
-  });
-
-  const coursesWithProgress = courses.map(course => {
-    const totalMaterials = course.materials.length;
-    const completedMaterials = course.materials.filter(m => m.progress?.[0]?.completed).length;
-    const progressPercentage = totalMaterials === 0 ? 0 : Math.round((completedMaterials / totalMaterials) * 100);
-
-    return { ...course, totalMaterials, completedMaterials, progressPercentage };
-  });
+export default function StudentDashboard() {
+  const coursesWithProgress: any[] = [];
 
   return (
     <div className="space-y-8">

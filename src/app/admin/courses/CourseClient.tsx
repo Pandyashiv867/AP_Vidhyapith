@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { createCourse, uploadMaterial, deleteCourse } from './actions';
 
 type Material = {
   id: string;
@@ -21,22 +20,23 @@ export default function CourseClient({ initialCourses }: { initialCourses: Cours
   const [loading, setLoading] = useState(false);
   const [uploadingCourseId, setUploadingCourseId] = useState<string | null>(null);
 
-  const handleCreateCourse = async (formData: FormData) => {
+  const handleCreateCourse = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
-    await createCourse(formData);
+    await new Promise(res => setTimeout(res, 500));
     setLoading(false);
   };
 
-  const handleUpload = async (formData: FormData, courseId: string) => {
+  const handleUpload = async (e: React.FormEvent<HTMLFormElement>, courseId: string) => {
+    e.preventDefault();
     setUploadingCourseId(courseId);
-    formData.append('courseId', courseId);
-    await uploadMaterial(formData);
+    await new Promise(res => setTimeout(res, 500));
     setUploadingCourseId(null);
   };
 
   const handleDelete = async (id: string) => {
     if (confirm('Delete this course and all its materials?')) {
-      await deleteCourse(id);
+      await new Promise(res => setTimeout(res, 500));
     }
   };
 
@@ -47,7 +47,7 @@ export default function CourseClient({ initialCourses }: { initialCourses: Cours
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 sticky top-6">
           <h3 className="text-lg font-semibold text-white mb-4">Create New Course</h3>
           
-          <form action={handleCreateCourse} className="space-y-4">
+          <form onSubmit={handleCreateCourse} className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-300">Course Title</label>
               <input
@@ -126,7 +126,7 @@ export default function CourseClient({ initialCourses }: { initialCourses: Cours
 
                 {/* Upload Form */}
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 border-dashed">
-                  <form action={(data) => handleUpload(data, course.id)} className="flex flex-col sm:flex-row items-end gap-4">
+                  <form onSubmit={(e) => handleUpload(e, course.id)} className="flex flex-col sm:flex-row items-end gap-4">
                     <div className="flex-1 w-full">
                       <label className="text-xs font-medium text-gray-400 mb-1 block">Title</label>
                       <input type="text" name="title" required className="w-full px-3 py-1.5 bg-gray-900 border border-gray-700 rounded text-sm text-white focus:ring-1 focus:ring-indigo-500 outline-none" placeholder="e.g. Chapter 1 Video" />

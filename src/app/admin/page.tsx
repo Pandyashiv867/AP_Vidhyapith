@@ -1,8 +1,6 @@
-import { prisma } from '@/lib/prisma';
-
 export default async function AdminDashboard() {
-  const studentCount = await prisma.user.count({ where: { role: 'STUDENT' } });
-  const courseCount = await prisma.course.count();
+  const studentCount = 0;
+  const courseCount = 0;
 
   return (
     <div className="space-y-6">
