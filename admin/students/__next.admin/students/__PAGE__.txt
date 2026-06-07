@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[79874,["/AP_Vidhyapith/_next/static/chunks/0iafiihrewfhd.js","/AP_Vidhyapith/_next/static/chunks/16fujzx437k1q.js","/AP_Vidhyapith/_next/static/chunks/1afk05xp55y61.js","/AP_Vidhyapith/_next/static/chunks/1oqbrl4h3h719.js"],"default"]
+3:I[86755,["/AP_Vidhyapith/_next/static/chunks/0iafiihrewfhd.js","/AP_Vidhyapith/_next/static/chunks/16fujzx437k1q.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"space-y-6","children":[["$","header",null,{"className":"flex justify-between items-center","children":["$","div",null,{"children":[["$","h2",null,{"className":"text-2xl font-bold text-white","children":"Manage Students"}],["$","p",null,{"className":"text-gray-400 mt-1","children":"Create accounts and manage device access."}]]}]}],["$","$L2",null,{"initialStudents":[]}]]}],[["$","script","script-0",{"src":"/AP_Vidhyapith/_next/static/chunks/1oqbrl4h3h719.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Z5kg4zTLINQxIhxIeozhf"}
+5:null

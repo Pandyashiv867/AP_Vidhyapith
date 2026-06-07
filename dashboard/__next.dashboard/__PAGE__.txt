@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[86755,["/AP_Vidhyapith/_next/static/chunks/0iafiihrewfhd.js","/AP_Vidhyapith/_next/static/chunks/16fujzx437k1q.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"space-y-8","children":[["$","header",null,{"children":[["$","h2",null,{"className":"text-3xl font-extrabold text-white","children":"Your Courses"}],["$","p",null,{"className":"text-gray-400 mt-2","children":"Select a course to pick up right where you left off."}]]}],["$","div",null,{"className":"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6","children":["$","div",null,{"className":"col-span-full py-12 text-center bg-gray-900 rounded-xl border border-gray-800","children":["$","p",null,{"className":"text-gray-500","children":"No courses available yet."}]}]}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Z5kg4zTLINQxIhxIeozhf"}
+4:null
